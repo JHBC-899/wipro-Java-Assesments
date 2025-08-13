@@ -1,0 +1,118 @@
+ .navbar {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            background-color: #d95959;
+        }
+        .logo{
+            color: white;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .logo img{
+            height: 40px;
+            width: 40px;
+        }
+        .tabs {
+            display: flex; 
+        }
+        .tabs a {
+            padding: 14px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+        .tabs a:hover {
+            background: #f09999;
+            color: black;
+        }
+        .hero{
+            text-align: center;
+            margin-top :100px;
+            font-weight: bold;
+        }
+        .quote{
+            font-weight: bold;
+            color:dodgerblue;
+        }
+        footer{
+            background-color: #d95959;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-rows: auto auto;
+            gap: 10px;
+            padding: 10px;
+        }
+        .grid-container img{
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+        }
+        body{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            display: flex;
+            height: 100vh;
+
+        }
+         .menu{
+            width: 25%;
+            background-color: #f4f4f4;
+            border-right: 1px solid #ccc;
+            padding: 20px;
+
+        }
+        .menu a{
+            display: block;
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: #e0e0e0;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;            
+
+        }
+        iframe{
+            flex:1;
+            border:none;
+            height:100%;
+        }
+        form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+form input, form select, form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+form input[type="radio"], form input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+button {
+    background-color: #009688;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+button:hover {
+    background-color: #00796b;
+}
+
+        
