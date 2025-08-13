@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTour – Explore Nature</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-title">
+            <img src="images/logo.jpg" alt="EcoTour Logo" class="logo">
+            <h1>EcoTour – Explore Nature</h1>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <h2>Discover the Beauty of Nature</h2>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>EcoTour is dedicated to helping you explore the most beautiful and untouched natural destinations. 
+           We promote sustainable travel and eco-friendly adventures.</p>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <img src="images/nature1.jpg" alt="Nature 1">
+            <img src="images/nature2.jpg" alt="Nature 2">
+            <img src="images/nature3.jpg" alt="Nature 3">
+            <img src="images/nature4.jpg" alt="Nature 4">
+            <img src="images/nature5.jpg" alt="Nature 5">
+            <img src="images/nature6.jpg" alt="Nature 6">
+            <img src="images/nature7.jpg" alt="Nature 7">
+            <img src="images/nature8.jpg" alt="Nature 8">
+            <img src="images/nature9.jpg" alt="Nature 9">
+        </div>
+    </section>
+    <section style="text-align: center;" id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label>Name:</label>
+            <input type="text" name="name" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Interested In:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="interest" value="tours" required> Tours</label>
+                <label><input type="radio" name="interest" value="volunteering"> Volunteering</label>
+            </div>
+
+            <label>Message:</label>
+            <textarea name="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Follow Us:</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 EcoTour. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
