@@ -1,0 +1,31 @@
+.carousel-custom {
+  height: 40vh;
+ 
+}
+
+.carousel-custom .carousel-item img {
+  height: 40vh;
+
+  object-fit:fill;
+}
+
+.card-img-top {
+  height: 200px;       
+  object-fit: cover;   
+}
+
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
