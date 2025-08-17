@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="add-product.html">Add Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Product List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="#" onclick="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h2 class="mb-4">All Products</h2>
+    <div class="row" id="productList">
+
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "http://localhost:3000/products";
+    function loadProducts(){
+        fetch(API_URL)
+        .then(res=>res.json())
+        .then(products => {
+            let productList = document.getElementById("productList");
+            productList.innerHTML = ""
+            if(products.length === 0){
+                productList.innerHTML = "<p>No Products available.</p>";
+                return;
+            }
+            products.forEach(product => {
+                let card = `
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                         <img src="${product.image}" 
+                        alt="${product.title}" 
+                            class="card-img-top" 
+                            style="width:70%; height:200px; 
+                            object-fit:cover; margin:0 auto; display:block;">
+                     <div class="card-body">
+                            <h5 class="card-title">${product.title}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <p><strong>Price: </strong>$${product.price}</p>
+                            <div class="d-flex justify-content-between">
+                      <button class="btn btn-warning btn-sm" onclick="editProduct(${product.id})">Edit</button>
+                      <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Delete</button>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                `;
+                productList.innerHTML += card;
+            })
+        })
+        .catch(err => console.error("Error loading Products: ", err))
+    }
+
+    loadProducts();
+
+    function editProduct(id) {
+      window.location.href = `edit-product.html?id=${id}`;
+    }
+
+    function deleteProduct(id) {
+      if (confirm("Are you sure you want to delete this Product?")) {
+        fetch(`${API_URL}/${id}`, { method: "DELETE" })
+          .then(res => {
+            if (res.ok) {
+              alert("Product deleted successfully!");
+              loadProducts(); // refresh list
+            } else {
+              alert("Failed to delete Product.");
+            }
+          })
+          .catch(err => console.error("Error deleting Product:", err));
+      }
+    }
+
+    function logout(){
+        localStorage.removeItem("loggedInUser")
+        window.location.href="login.html"
+    }
+  </script>
+</body>
+</html>

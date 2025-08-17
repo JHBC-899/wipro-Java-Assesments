@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Signup Page</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Product Management System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a id="loginLink" class="nav-link" href="login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a id="singupLink" class="nav-link" href="signup.html">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a id="logoutLink" class="nav-link" href="#" onclick="logout()">Login</a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Signup</h2>
+        <input type="text" id="name" placeholder="Full Name" class="form-control mb-2" required>
+        <input type="email" id="email" placeholder="Email" class="form-control mb-2" required>
+        <input type="password" id="password" placeholder="Password" class="form-control mb-2" required>
+        
+        <select id="role" class="form-control mb-3" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+
+        <button class="btn btn-primary" onclick="signup()">Signup</button>
+    </div>
+
+    <script>
+        function signup() {
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+  let role = document.getElementById("role").value;
+
+  if (!name || !email || !password || !role) {
+    alert("All fields are required!");
+    return;
+  }
+
+  // First check if user already exists
+  fetch(`http://localhost:3000/users?email=${encodeURIComponent(email)}`)
+    .then(res => res.json())
+    .then(usersFromServer => {
+      if (usersFromServer.length > 0) {
+        alert("User already exists!");
+        return;
+      }
+
+      // Create new user in db.json
+      fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, role })
+      })
+        .then(res => res.json())
+        .then(data => {
+          alert("Signup Successful! Please login.");
+          window.location.href = "login.html"; 
+        })
+        .catch(err => {
+          console.error("Error:", err);
+          alert("Signup failed. Please try again.");
+        });
+    })
+    .catch(err => {
+      console.error("Error:", err);
+      alert("Something went wrong. Try again later.");
+    });
+}
+
+        function logout(){
+            alert("You have been logged out.")
+            window.location.href="index.html"
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

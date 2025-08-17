@@ -1,0 +1,75 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Charles",
+      "email": "charles@example.com",
+      "password": "charles123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "john123",
+      "role": "user"
+    },
+    {
+      "id": "f19d",
+      "name": "Jonnalagadda Hari Babu",
+      "email": "hari@demo.com",
+      "password": "hari",
+      "role": "user"
+    },
+    {
+      "id": "d181",
+      "name": "Jonnalagadda Hari Babu",
+      "email": "hari@demo.in",
+      "password": "hari",
+      "role": "admin"
+    }
+  ],
+  "products": [
+    {
+      "title": "Fresh Bread",
+      "description": "A delicious Fresh Bread",
+      "price": "3",
+      "image": "images/freshbread.jpg",
+      "id": "1"
+    },
+    {
+      "title": "Fresh Apples",
+      "description": "A delicious Fresh Apples",
+      "price": "10",
+      "image": "images/freshapples.jpg",
+      "id": "2"
+    },
+    {
+      "title": "Fresh Milk",
+      "description": "A Fresh Milk With High Caramel",
+      "price": "7",
+      "image": "images/milk.jpg",
+      "id": "3"
+    }
+  ],
+  "cart": [
+    {
+      "id": 1,
+      "title": "Fresh Bread",
+      "price": 3,
+      "quantity": 1
+    },
+    {
+      "id": 1,
+      "title": "Fresh Bread",
+      "price": 3,
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "title": "Fresh Milk",
+      "price": 7,
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="user-dashboard.html">Product Portal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="user-dashboard.html">Product List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Checkout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="#" onclick="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Checkout</h2>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Product Name</th>
+          <th>Price ($)</th>
+        </tr>
+      </thead>
+      <tbody id="checkoutBody">
+        <!-- Cart items will be loaded here -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          <th id="totalPrice">$0</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <script>
+    const CART_API_URL = "http://localhost:3000/cart";
+
+    function loadCart() {
+      fetch(CART_API_URL)
+        .then(res => res.json())
+        .then(cart => {
+          const tbody = document.getElementById("checkoutBody");
+          tbody.innerHTML = "";
+          let total = 0;
+
+          if(cart.length === 0){
+            tbody.innerHTML = '<tr><td colspan="2" class="text-center">No items in cart.</td></tr>';
+            document.getElementById("totalPrice").innerText = "$0";
+            return;
+          }
+
+          cart.forEach(item => {
+            total += Number(item.price);
+            const row = `
+              <tr>
+                <td>${item.title}</td>
+                <td>$${item.price}</td>
+              </tr>
+            `;
+            tbody.innerHTML += row;
+          });
+
+          document.getElementById("totalPrice").innerText = `$${total}`;
+        })
+        .catch(err => console.error("Error loading cart:", err));
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+
+    window.onload = () => {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if(!user || user.role !== "user"){
+        alert("Unauthorized! Please login as a user.");
+        window.location.href = "login.html";
+      }
+      loadCart();
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
